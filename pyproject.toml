@@ -1,0 +1,51 @@
+[project]
+name = "netflixautorec"
+version = "0.1.0"
+description = "Autoencoder recommender system на основе датасета Netflix Prize"
+readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+    "fastapi>=0.141.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.9",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+    "RUF", # ruff-specific
+    "BLE", # flake8-blind-except: запрещает except Exception без уважительной причины
+    "ANN", # flake8-annotations
+]
+ignore = [
+    "RUF001", # кириллические строки — ложные срабатывания
+    "RUF002", # кириллические docstring — ложные срабатывания
+    "RUF003", # кириллические комментарии — ложные срабатывания
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+skip-magic-trailing-comma = false
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+pythonpath = ["."]
